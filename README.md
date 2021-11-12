@@ -107,6 +107,8 @@ Ejercicios
 
 <img width="1440" alt="Captura de Pantalla 2021-11-12 a les 15 15 10" src="https://user-images.githubusercontent.com/92745258/141492839-3e7ba158-c12f-4fa8-8e2f-4c6cd925147d.png">
 
+Hemos etiquetado manualmente los segmentos de voz (V) y silencio (S) en la transcripción .lab. Seguidamente se puede ver la tasa de cruces por cero, el contorno de potencia y por último la señal con el eje temporal.
+
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
