@@ -15,20 +15,24 @@ int main(int argc, char *argv[]) {
   SF_INFO sf_info;
   FILE *vadfile;
   int n_read = 0, i;
-
+  int n_write = 0;
+  int alfa1, alfa2, ncont, contsilencio, contvoz;
   VAD_DATA *vad_data;
-  VAD_STATE state, last_state;
+  VAD_STATE state, last_state,last_state_merge;
 
   float *buffer, *buffer_zeros;
   int frame_size;         /* in samples */
   float frame_duration;   /* in seconds */
-  unsigned int t, last_t; /* in frames */
+  unsigned int t, last_t, time; /* in frames */
 
   char	*input_wav, *output_vad, *output_wav;
 
   DocoptArgs args = docopt(argc, argv, /* help */ 1, /* version */ "2.0");
-  float alfa0=atof(args.alfa0);
-  
+  alfa1 = atoi(args.alfa1);
+  alfa2 = atoi(args.alfa2);
+  ncont = atoi(args.ninit);
+  contsilencio = atoi(args.contsilence);
+  contvoz = atoi(args.contvoice);
   verbose    = args.verbose ? DEBUG_VAD : 0;
   input_wav  = args.input_wav;
   output_vad = args.output_vad;
@@ -65,7 +69,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  vad_data = vad_open(sf_info.samplerate,alfa0,int Ninit);
+  vad_data = vad_open(sf_info.samplerate,alfa1,alfa2,contvoz,contsilencio,ncont);
   /* Allocate memory for buffers */
   frame_size   = vad_frame_size(vad_data);
   buffer       = (float *) malloc(frame_size * sizeof(float));
@@ -74,6 +78,7 @@ int main(int argc, char *argv[]) {
 
   frame_duration = (float) frame_size/ (float) sf_info.samplerate;
   last_state = ST_UNDEF;
+  last_state_merge=ST_SILENCE;
 
   for (t = last_t = 0; ; t++) { /* For each frame ... */
     /* End loop when file has finished (or there is an error) */
@@ -88,17 +93,33 @@ int main(int argc, char *argv[]) {
       vad_show_state(vad_data, stdout);
 
     /* TODO: print only SILENCE and VOICE labels */
+    
+    if((last_state_merge!=state) &&(state==ST_MAYBEVOICE || state==ST_MAYBESILENCE ) && (last_state==ST_SILENCE ||last_state==ST_VOICE)){
+      last_state_merge=last_state;
+      time=t;
+    }
+    
     /* As it is, it prints UNDEF segments but is should be merge to the proper value */
     if (state != last_state) {
-      if (t != last_t)
-        fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration, state2str(last_state));
-      last_state = state;
-      last_t = t;
+      if (t != last_t){
+        if((last_state_merge!=state) && (state==ST_VOICE||state==ST_SILENCE) && (last_state==ST_MAYBEVOICE || last_state==ST_MAYBESILENCE)){
+          fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, time * frame_duration, state2str(last_state_merge));
+          last_state_merge = state;
+          last_t=time;
+        }
+      }
     }
 
     if (sndfile_out != 0) {
       /* TODO: go back and write zeros in silence segments */
+     if(last_state==ST_SILENCE){
+        n_write=sf_write_float(sndfile_out,buffer_zeros,frame_size);
+      }
+      else{
+        n_write=sf_write_float(sndfile_out,buffer,frame_size);
+      }
     }
+    last_state=state;
   }
 
   state = vad_close(vad_data);
