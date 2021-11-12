@@ -149,7 +149,7 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 
 ![image](https://user-images.githubusercontent.com/92745258/141536683-c7923607-18ee-4bef-be93-1974c60be755.png)
 
-  El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual. Por ejemplo, los sonidos sordos como la letra "s" ("Serrano" "eStamoS") el programa la detecta correctamente ya que el tramo lo reconoce como voz (V).
+  El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual. Por ejemplo, los sonidos sordos como la letra "s" ("Serrano" "eStamoS") el programa la detecta correctamente ya que el tramo lo reconoce como voz (V). Esto se debe a los niveles de umbrales k0, k1 y k2 que hemos considerado para realizar el detector de voz.
   
   En la captura anterior se puede ver que en nuestro caso, con nuestro fichero de audio, la tasa de recall que obtenemos es de 98.87% para la voz (V) y de 99.50% para el silencio (S), que la tasa de presión que obtenemos es de 99.64% para la voz (V) y de 98.48% para el silencio (S) y que el F_score es 99.03% para la voz (V) y de 98.82% para el silencio (S), es decir, en nuestro caso las diferencias son imperceptibles.
   
