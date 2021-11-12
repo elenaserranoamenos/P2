@@ -107,8 +107,6 @@ Ejercicios
 
 <img width="1440" alt="Captura de Pantalla 2021-11-12 a les 15 15 10" src="https://user-images.githubusercontent.com/92745258/141492839-3e7ba158-c12f-4fa8-8e2f-4c6cd925147d.png">
 
-Hemos etiquetado manualmente los segmentos de voz (V) y silencio (S) en la transcripción .lab. Seguidamente se puede ver la tasa de cruces por cero, el contorno de potencia y por último la señal con el eje temporal.
-
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
@@ -144,15 +142,19 @@ Hemos etiquetado manualmente los segmentos de voz (V) y silencio (S) en la trans
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
+<img width="567" alt="Captura de pantalla 2021-11-12 a las 21 59 53" src="https://user-images.githubusercontent.com/92084115/141533898-94cd0b2a-b8bf-4fc9-8679-8cb06dc1baf3.png">
+
    El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual.
+   En la captura anterior se puede ver que en nuestro caso, con nuestro fichero de audio, la tasa de recall que obtenemos es de 98.87% para la voz (V) y de 99.50% para el silencio (S), que la tasa de presión que obtenemos es de 99.64% para la voz (V) y de 98.48% para el silencio (S) y que el F_score es 99.03% para la voz (V) y de 98.82% para el silencio (S), es decir, en nuestro caso las diferencias son imperceptibles.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+  
   <img width="572" alt="Captura de pantalla 2021-11-12 a las 21 42 52" src="https://user-images.githubusercontent.com/92084115/141532062-2b0cc4ea-8435-4b53-9513-5d153763a4e5.png">
 
-En cas de tots els àudios, la tasa de recall que obtenim es de 87.69% per a la veu (V) i de 91.75% per al silenci (S). Tambe en el cas de tots els àudios la tasa de precsió que obtenim es de 93.74% per a la veu (V) i de 85.53% per al silenci (S). Si observem una mica tots els fitxers d'àudio que hem intentat detectar s'observa que un gran nombre de fitxers es troben entre el 85% i el 99%, el problema és que alguns que es troben més baixos i es per això que la mitjana baixa.
-Creiem que els valos obtinguts son sufucients per determinar que tenim un sistema força correcte, encara que sempre es podria millorar.
+En caso de todos los audios, la tasa de recall que obtenemos es de 87.69% para la voz (V) y de 91.75% para el silencio (S), que la tasa de presión que obtenemos es de 93.74% para la voz (V) y de 85.53% para el silencio (S) y que el F_score es 88.84% para la voz (V) y de 85.53% para el silencio (S). Si observamos un poco por encima todos los archivos de audio que hemos intentado detectar se observa que un gran número de archivos se encuentran entre el 85% y el 99%, el problema es que hay algunos que se encuentran más bajos y es por eso que la media baja.
+Creemos que los valos obtenidos son sufucientes para determinar que tenemos un sistema bastante correcto, aunque siempre se podría mejorar.
 
 
 ### Trabajos de ampliación
