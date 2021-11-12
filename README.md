@@ -105,6 +105,8 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
+<img width="1440" alt="Captura de Pantalla 2021-11-12 a les 10 05 28" src="https://user-images.githubusercontent.com/92745258/141441494-dc10f008-4bca-47b6-995e-2898075aae49.png">
+
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
