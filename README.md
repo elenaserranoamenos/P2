@@ -122,6 +122,7 @@ Ejercicios
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 
+
 	1) Detectar consonantes sordas -> tasa alta.
   	2) Detectar un tramo de voz -> tasa baja.
   	3) Tramo de silencio (con ruido de fondo) -> tasa media.
