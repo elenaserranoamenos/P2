@@ -147,6 +147,10 @@ Ejercicios
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+  <img width="572" alt="Captura de pantalla 2021-11-12 a las 21 42 52" src="https://user-images.githubusercontent.com/92084115/141532062-2b0cc4ea-8435-4b53-9513-5d153763a4e5.png">
+
+En cas de tots els àudios, la tasa de recall que obtenim es de 87.69% per a la veu (V) i de 91.75% per al silenci (S). Tambe en el cas de tots els àudios la tasa de precsió que obtenim es de 93.74% per a la veu (V) i de 85.53% per al silenci (S). Si observem una mica tots els fitxers d'àudio que hem intentat detectar s'observa que un gran nombre de fitxers es troben entre el 85% i el 99%, el problema és que alguns que es troben més baixos i es per això que la mitjana baixa.
+Creiem que els valos obtinguts son sufucients per determinar que tenim un sistema força correcte, encara que sempre es podria millorar.
 
 
 ### Trabajos de ampliación
