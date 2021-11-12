@@ -147,13 +147,21 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
-   El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual. Los sonidos sordos como la letra "s" ("Serrano" "eStamoS") el programa la detecta correctamente ya que el tramo lo reconoce como voz (V).
+  <img width="572" alt="Captura de pantalla 2021-11-12 a las 21 42 52" src="https://user-images.githubusercontent.com/92084115/141532062-2b0cc4ea-8435-4b53-9513-5d153763a4e5.png">
+
+  El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual. Por ejemplo, los sonidos sordos como la letra "s" ("Serrano" "eStamoS") el programa la detecta correctamente ya que el tramo lo reconoce como voz (V).
+  
+  En la captura anterior se puede ver que en nuestro caso, con nuestro fichero de audio, la tasa de recall que obtenemos es de 98.87% para la voz (V) y de 99.50% para el silencio (S), que la tasa de presión que obtenemos es de 99.64% para la voz (V) y de 98.48% para el silencio (S) y que el F_score es 99.03% para la voz (V) y de 98.82% para el silencio (S), es decir, en nuestro caso las diferencias son imperceptibles.
+  
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
   
-  <img width="572" alt="Captura de pantalla 2021-11-12 a las 21 42 52" src="https://user-images.githubusercontent.com/92084115/141532062-2b0cc4ea-8435-4b53-9513-5d153763a4e5.png">
+  ![image](https://user-images.githubusercontent.com/92745258/141536465-169a38e9-7d27-402e-a7d4-8f9218fdbd47.png)
+  
+	En caso de todos los audios, la tasa de recall que obtenemos es de 87.69% para la voz (V) y de 91.75% para el silencio (S), que la tasa de precisión que obtenemos es de 93.74% para la voz (V) y de 85.53% para el silencio (S) y que el F_score es 88.84% para la voz (V) y de 85.53% para el silencio (S). Si observamos un poco por encima todos los archivos de audio que hemos intentado detectar se observa que un gran número de archivos se encuentran entre el 85% y el 99%, el problema es que hay algunos que se encuentran más bajos y es por eso que la media baja. Creemos que los valores obtenidos son sufucientes para determinar que tenemos un sistema bastante correcto, aunque siempre se podría mejorar.
+ 
 
 ### Trabajos de ampliación
 
