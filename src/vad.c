@@ -6,7 +6,7 @@
 #include "pav_analysis.h"
 
 const float FRAME_TIME = 10.0F; /* in ms. */
-int Ninit = 0;
+
 /* 
  * As the output state is only ST_VOICE, ST_SILENCE, or ST_UNDEF,
  * only this labels are needed. You need to add all labels, in case
@@ -55,17 +55,12 @@ Features compute_features(const float *x, int N) {
  * TODO: Init the values of vad_data
  */
 
-VAD_DATA *vad_open(float rate)
-{
+VAD_DATA * vad_open(float rate, float alpha1) {
   VAD_DATA *vad_data = malloc(sizeof(VAD_DATA));
   vad_data->state = ST_INIT;
-  vad_data->k0 = -100;
-  vad_data->k1 = 0;
-  vad_data->k2 = 0;
-  vad_data->state_time = 0;
-  vad_data->last_feature = 0;
   vad_data->sampling_rate = rate;
   vad_data->frame_length = rate * FRAME_TIME * 1e-3;
+  vad_data->alpha1 = alpha1;
   return vad_data;
 }
 
@@ -99,61 +94,19 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
   vad_data->last_feature = f.p; /* save feature, in case you want to show */
 
   switch (vad_data->state) {   
-    case ST_INIT:
-    if (vad_data->last_feature < f.p)
-    {
-      vad_data->k0 = f.p;
-      if (f.p > vad_data->last_feature + 5)
-      {
-        vad_data->k0 = vad_data->last_feature;
-        vad_data->k1 = vad_data->k0 + (f.p - vad_data->last_feature) - 2;
-        vad_data->k2 = vad_data->k1 + 5;
-        vad_data->state = ST_SILENCE;
-      }
-    }
-
- break;
+  case ST_INIT:
+    vad_data->p1=f.p + vad_data -> alpha1;
+    vad_data->state = ST_SILENCE;
+    break;
 
   case ST_SILENCE:
-    Ninit = 0;
-    if (f.p > vad_data->k1)
-    {
-      vad_data->state = ST_MaybeVOICE;
-    }
-
-    break;
-    case ST_MaybeVOICE:
-    vad_data->state_time = vad_data->state_time + FRAME_TIME;
-    if (f.p > vad_data->k1 && vad_data->state_time > 50)
-    { /* Sponemos que el tiempo maximo de una pausa breve es de 50 ms*/
-      vad_data->state = ST_SILENCE;
-      vad_data->state_time = 0;
-    }
-    else if (f.p > vad_data->k2)
-    {
+    if (f.p > vad_data->p1)
       vad_data->state = ST_VOICE;
-      vad_data->state_time = 0;
-    }
-
     break;
 
   case ST_VOICE:
-    if (f.p < vad_data->k2)
+    if (f.p < vad_data->p1)
       vad_data->state = ST_SILENCE;
-    break;
-
-  case ST_MaybeSILENCE:
-    vad_data->state_time = vad_data->state_time + FRAME_TIME;
-    if (f.p < vad_data->k2 && vad_data->state_time > 50)
-    { /* Sponemos que el tiempo maximo de una pausa breve es de 50 ms*/
-      vad_data->state = ST_VOICE;
-      vad_data->state_time = 0;
-    }
-    else if (f.p < vad_data->k1)
-    {
-      vad_data->state = ST_SILENCE;
-      vad_data->state_time = 0;
-    }
     break;
 
   case ST_UNDEF:
