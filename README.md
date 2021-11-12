@@ -147,7 +147,7 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
-  <img width="572" alt="Captura de pantalla 2021-11-12 a las 21 42 52" src="https://user-images.githubusercontent.com/92084115/141532062-2b0cc4ea-8435-4b53-9513-5d153763a4e5.png">
+![image](https://user-images.githubusercontent.com/92745258/141536683-c7923607-18ee-4bef-be93-1974c60be755.png)
 
   El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual. Por ejemplo, los sonidos sordos como la letra "s" ("Serrano" "eStamoS") el programa la detecta correctamente ya que el tramo lo reconoce como voz (V).
   
