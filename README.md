@@ -176,6 +176,8 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
 
+![image](https://user-images.githubusercontent.com/92745258/141539922-354b8db0-5809-4180-adb9-3ab73bb76aad.png)
+
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
