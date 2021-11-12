@@ -107,16 +107,26 @@ Ejercicios
 
 <img width="1440" alt="Captura de Pantalla 2021-11-12 a les 10 05 28" src="https://user-images.githubusercontent.com/92745258/141441494-dc10f008-4bca-47b6-995e-2898075aae49.png">
 
-
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
-
+	  
+	  Si observamos la gráfica del contorno de potencia vemos que hay un incremento de hasta 60 dB respecto al silencio inicial.
+	  
 	* Duración mínima razonable de los segmentos de voz y silencio.
+
+	Duración mínima segmentos de voz: 1.5 s
+	
+	Duración mínima segmentos de silencio: 0.8 s
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 
+	1) Detectar consonantes sordas -> tasa alta.
+
+  	2) Detectar un tramo de voz -> tasa baja.
+
+  	3) Tramo de silencio (con ruido de fondo) -> tasa media.
 
 ### Desarrollo del detector de actividad vocal
 
