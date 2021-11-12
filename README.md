@@ -170,7 +170,18 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 - Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+  
+  Para crear la señal de audio sin ruido hemos modificado el código y hemos utilizado el siguiente comando:
+  
+  ![image](https://user-images.githubusercontent.com/92745258/141565754-7d278616-78d8-4dee-a870-71ceb0c66d5a.png)
 
+  Así pues, en la siguiente captura podemos ver una primera señal sin ruido seguida del audio original.
+  
+  ![image](https://user-images.githubusercontent.com/92745258/141564601-46db8db6-5833-4aeb-ace7-b1c21bdf4b6a.png)
+
+  Como podemos ver, en la primera señal, el poco ruido que hay al principio se pone a cero. El resto de segmentos de silencio no se aprecia ruido por lo tanto, no vemos ninguna diferencia. 
+  
+  
 #### Gestión de las opciones del programa usando `docopt_c`
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
