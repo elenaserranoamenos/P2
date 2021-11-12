@@ -3,15 +3,10 @@
 # Be sure that this file has execution permissions:
 # Use the nautilus explorer or chmod +x run_vad.sh
 
-# Write here the name and path of your program and database
+
 DIR_P2=$HOME/PAV/P2
 DB=$DIR_P2/db.v4
-<<<<<<< HEAD
-# CMD="$DIR_P2/bin/vad --alpha1=$1"
-CMD=bin/vad  #write here the name and path of your program
-=======
-CMD=bin/vad
->>>>>>> 359e42a6265e8fd96118efb725e987ea16febfc5
+CMD=$DIR_P2/bin/vad  #write here the name and path of your program
 
 for filewav in $DB/*/*wav; do
 #    echo
