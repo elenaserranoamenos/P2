@@ -112,7 +112,7 @@ Ejercicios
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 	  
-	  Si observamos la gráfica del contorno de potencia vemos que hay un incremento de hasta 60 dB respecto al silencio inicial.
+	  Si observamos la gráfica del contorno de potencia vemos que hay un incremento de hasta 70 dB respecto al silencio inicial.
 	  
 	* Duración mínima razonable de los segmentos de voz y silencio.
 
