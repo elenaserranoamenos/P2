@@ -179,7 +179,7 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
   
   ![image](https://user-images.githubusercontent.com/92745258/141564601-46db8db6-5833-4aeb-ace7-b1c21bdf4b6a.png)
 
-  Como podemos ver, en la primera señal, el poco ruido que hay al principio se pone a cero. El resto de segmentos de silencio no se aprecia ruido por lo tanto, no vemos ninguna diferencia. 
+  Como podemos ver, en la primera señal, el poco ruido que hay al principio se pone a cero. El resto de segmentos de silencio no se aprecia ruido, por lo tanto, no vemos ninguna diferencia. 
   
   
 #### Gestión de las opciones del programa usando `docopt_c`
