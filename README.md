@@ -105,15 +105,26 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
+<img width="1440" alt="Captura de Pantalla 2021-11-12 a les 15 15 10" src="https://user-images.githubusercontent.com/92745258/141492839-3e7ba158-c12f-4fa8-8e2f-4c6cd925147d.png">
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
+	  
+	  Si observamos la gráfica del contorno de potencia vemos que hay un incremento de hasta 70 dB respecto al silencio inicial.
 
 	* Duración mínima razonable de los segmentos de voz y silencio.
 
+	Duración mínima segmentos de voz: 1.5 s
+	
+	Duración mínima segmentos de silencio: 0.8 s
+
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+	1) Detectar consonantes sordas -> tasa alta.
+  	2) Detectar un tramo de voz -> tasa baja.
+  	3) Tramo de silencio (con ruido de fondo) -> tasa media.
 
 
 ### Desarrollo del detector de actividad vocal
@@ -123,9 +134,14 @@ Ejercicios
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
+  
+  <img width="1440" alt="comparació vad - lab" src="https://user-images.githubusercontent.com/92745258/141493246-1efa321c-e973-4388-b695-392209193e73.png">
 
+   Primero observamos el etiquetado manual (.lab) y seguidamente el etiquetado de la detección automática (.vad).
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+   El programa tiene mucha precisión, ya que los segmentos de voz y silencio de la detección automática son prácticamente iguales a los segmentos del etiquetado manual.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
