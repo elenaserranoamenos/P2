@@ -15,8 +15,8 @@ typedef struct {
   VAD_STATE state,last_state;
   float sampling_rate,k0,k1,k2;
   int alpha1, alpha2, ncont, contvoz,contsilencio;
-  unsigned int voice, silence; //calcular las tramas que estamos en silencio o en voz para determinar si es maybe o si es de verdad
-  unsigned int frame_length,aux; //Ninit numero de tramas para calcular k0
+  unsigned int voice, silence; //calcular les trames en silenci o en veu per saber si es maybe o es de veritat
+  unsigned int frame_length,aux; //Ninit (aux) numero de tramas para calcular k0 (potencia mitja inicial)
   float last_feature; /* for debuggin purposes */
 } VAD_DATA;
 

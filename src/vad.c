@@ -60,11 +60,11 @@ VAD_DATA * vad_open(float rate,int alfa1,int alfa2, int contvoice, int contsilen
   vad_data->alpha2=alfa2;
   vad_data->contvoz=contvoice;
   vad_data->contsilencio=contsilence;
-  vad_data->ncont=ninit;
+  vad_data->ncont=ninit; //nombre de trames on es calcula la potència inicial k0
   vad_data->sampling_rate = rate;
   vad_data->frame_length = rate * FRAME_TIME * 1e-3;
   vad_data->aux=0;
-  vad_data->last_state=ST_UNDEF; //inicializamos estado indefinido
+  vad_data->last_state=ST_UNDEF; //estat indefinit
   return vad_data;
 }
 
@@ -105,13 +105,16 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
   switch (vad_data->state) {
     
   case ST_INIT:
-   // vad_data->k0 = f.p+vad_data->alfa0; //definimos k0 como alfa0+potencia de la trama
+
+    //vad_data->state = ST_SILENCE;
+    //vad_data->k0 = f.p+10;  //threshold
+    
     vad_data->k0+= pow(10,(vad_data->last_feature)/10);
     vad_data->aux++;
     if(vad_data->aux==vad_data->ncont){
-      vad_data->k0= 10*log10 (vad_data->k0/vad_data->ncont); //hemos calculado el valor de k0 con la fórmula del enunciado de la práctica
-      vad_data->k1=vad_data->k0+vad_data->alpha1;
-      vad_data->k2=vad_data->k1+vad_data->alpha2; 
+      vad_data->k0= 10*log10 (vad_data->k0/vad_data->ncont); //Potencia media inicial amb la formula del enunciat de la p2
+      vad_data->k1=vad_data->k0+vad_data->alpha1; //threshold
+      vad_data->k2=vad_data->k1+vad_data->alpha2; //threshold
       vad_data->state = ST_SILENCE;
     }
   vad_data->last_state=ST_INIT;
@@ -120,7 +123,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
   case ST_SILENCE: //fp es la potencia de la trama
     if (f.p > vad_data->k1){
       vad_data->state = ST_MAYBEVOICE;
-      vad_data->voice=1; //cuento que tengo una trama en voz
+      vad_data->voice=1; //te una trama en veu
     }
   vad_data->last_state=ST_SILENCE;
   break;
@@ -128,7 +131,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
   case ST_VOICE:
     if (f.p < vad_data->k1){
       vad_data->state = ST_MAYBESILENCE;
-      vad_data->silence=1; //cuento que tengo una trama en silencio
+      vad_data->silence=1; //te una trama en silenci
     }
   vad_data->last_state=ST_VOICE;
   break;
