@@ -181,6 +181,11 @@ El audio contiene el siguiente mensaje: "Maria Piñol, Elena Serrano. Estamos en
 
   Como podemos ver, en la primera señal, el poco ruido que hay al principio se pone a cero. El resto de segmentos de silencio no se aprecia ruido, por lo tanto, no vemos ninguna diferencia. 
   
+  Como nuestra señal tiene muy poco ruido, hemos cogido un audio de la base de datos para que se vea mejor la cancelación de ruido.
+  En la siguiente captura se puede apreciar como la primera gráfica es la señal con ruido y debajo, la señal con el ruido cancelado. Los cambios son muy notables, por lo tanto, podemos decir que nuestro programa funciona correctamente.
+  
+  ![image](https://user-images.githubusercontent.com/92745258/141615101-53e7887f-11d2-407b-aa53-fb13548227fe.png)
+
   
 #### Gestión de las opciones del programa usando `docopt_c`
 
